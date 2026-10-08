@@ -129,7 +129,7 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}
 
 <script>
 const KEY='dh_surat_v2';
-const SUPABASE_CONFIG={url:'',anonKey:''}; // isi dengan Project URL + anon public/publishable key Supabase
+const SUPABASE_CONFIG={url:'https://hwmndsbxsdhocnntflfm.supabase.co',anonKey:'sb_publishable_nnHBU6f4OcNVQOsDqBlupg_VEUh2QyD'}; // isi dengan Project URL + anon public/publishable key Supabase
 const sb=(SUPABASE_CONFIG.url&&SUPABASE_CONFIG.anonKey)?supabase.createClient(SUPABASE_CONFIG.url,SUPABASE_CONFIG.anonKey,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:false}}):null;
 const defaults={yayasan:'YAYASAN PONDOK PESANTREN SALAFIYAH DARUL HIKMAH',madrasah:'MTs. DARUL HIKMAH',nsm:'121235090085',npsn:'20581522',nus:'633',alamat:'Jl. Agung Masidin No 1 Desa Tamansari Mumbulsari Jember 68174',kamad:'ADNAN, S.Pd., M.Pd.',nip:'',kop_url:'',kamad_qr_url:''};
 let state=JSON.parse(localStorage.getItem(KEY)||'{"out":[],"in":[],"settings":{}}');
