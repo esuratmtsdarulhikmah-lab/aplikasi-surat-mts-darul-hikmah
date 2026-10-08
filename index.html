@@ -178,11 +178,34 @@ function activeOutgoing(){return state.out.filter(x=>!isTrashed(x));}
 function activeIncoming(){return state.in.filter(x=>!isTrashed(x));}
 function trashedOutgoing(){return state.out.filter(isTrashed);}
 function trashedIncoming(){return state.in.filter(isTrashed);}
+  function previewArchivedOutgoing(id){
+const x=state.out.find(r=>String(r.id)===String(id));
+if(!x){alert('Arsip surat tidak ditemukan.');return}
+const html=x.data?.html;
+if(!html){alert('Data preview surat ini tidak tersedia.');return}
+document.getElementById('preview').innerHTML=html;
+document.getElementById('previewModal').classList.add('open');
+}
+
+async function openIncomingFile(id){
+const x=state.in.find(r=>String(r.id)===String(id));
+if(!x){alert('Arsip surat masuk tidak ditemukan.');return}
+let url=x.file_url||'';
+if(!url){
+const path=x.data?.file_path;
+if(path&&sb){
+const {data,error}=sb.storage.from('madrasah-files').getPublicUrl(path);
+if(!error&&data?.publicUrl)url=data.publicUrl
+}
+}
+if(!url){alert('File PDF arsip ini tidak tersedia.');return}
+window.open(url,'_blank','noopener');
+}
 function renderTables(){
 const outFiltered=activeOutgoing().filter(x=>{const hay=[label(x.type),x.nomor,x.tanggal].join(' ').toLowerCase();return !outSearchText||hay.includes(outSearchText)});
-document.getElementById('outRows').innerHTML=outFiltered.map((x,i)=>`<tr><td>${i+1}</td><td>${label(x.type)}</td><td>${x.nomor||'-'}</td><td>${x.tanggal||'-'}</td><td><button class="btn btn-light" onclick="alert('Preview ulang untuk arsip lama belum diaktifkan.')">Lihat</button> <button class="btn btn-danger" onclick="deleteOutgoing('${x.id||''}')">Hapus</button></td></tr>`).join('')||`<tr><td colspan="5" class="muted">${outSearchText?'Data yang dicari tidak ditemukan.':'Belum ada arsip.'}</td></tr>`;
+document.getElementById('outRows').innerHTML=outFiltered.map((x,i)=>`<tr><td>${i+1}</td><td>${label(x.type)}</td><td>${x.nomor||'-'}</td><td>${x.tanggal||'-'}</td><td><button class="btn btn-light" onclick="previewArchivedOutgoing('${x.id||''}')">Lihat</button> <button class="btn btn-danger" onclick="deleteOutgoing('${x.id||''}')">Hapus</button></td></tr>`).join('')||`<tr><td colspan="5" class="muted">${outSearchText?'Data yang dicari tidak ditemukan.':'Belum ada arsip.'}</td></tr>`;
 const inFiltered=activeIncoming().filter(x=>{const hay=[x.nomor,x.pengirim,x.perihal,x.tanggal].join(' ').toLowerCase();return !inSearchText||hay.includes(inSearchText)});
-document.getElementById('inRows').innerHTML=inFiltered.map((x,i)=>`<tr><td>${i+1}</td><td>${x.nomor||'-'}</td><td>${x.pengirim||'-'}</td><td>${x.perihal||'-'}</td><td>${x.tanggal||'-'}</td><td class="file-actions">${x.file_url?`<a class="btn btn-light" href="${x.file_url}" target="_blank" rel="noopener">Lihat PDF</a>`:'-'} <button class="btn btn-danger" onclick="deleteIncoming('${x.id||''}')">Hapus</button></td></tr>`).join('')||`<tr><td colspan="6" class="muted">${inSearchText?'Data yang dicari tidak ditemukan.':'Belum ada surat masuk.'}</td></tr>`;
+document.getElementById('inRows').innerHTML=inFiltered.map((x,i)=>`<tr><td>${i+1}</td><td>${x.nomor||'-'}</td><td>${x.pengirim||'-'}</td><td>${x.perihal||'-'}</td><td>${x.tanggal||'-'}</td><td class="file-actions">${x.file_url||x.data?.file_path?`<button class="btn btn-light" onclick="openIncomingFile('${x.id||''}')">Lihat PDF</button>`:'-'} <button class="btn btn-danger" onclick="deleteIncoming('${x.id||''}')">Hapus</button></td></tr>`).join('')||`<tr><td colspan="6" class="muted">${inSearchText?'Data yang dicari tidak ditemukan.':'Belum ada surat masuk.'}</td></tr>`;
 renderTrash();
 }
 function renderTrash(){
