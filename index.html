@@ -347,18 +347,29 @@ generate = async function(){
   const subject=get('jenis').trim().toUpperCase();
   const date=get('tanggalSk');
   const html=`<style>
-  .sk-doc{font-family:"Times New Roman",serif;font-size:11pt;line-height:1.24;color:#111}
-  .sk-heading{text-align:center;font-weight:bold;line-height:1.22;margin:7mm 0 5mm}
-  .sk-heading .sk-small{font-size:11pt}
-  .sk-heading .sk-title{font-size:12pt}
-  .sk-row{display:grid;grid-template-columns:34mm 5mm minmax(0,1fr);column-gap:1mm;align-items:start;margin:0 0 3mm}
+  .sk-doc{font-family:"Times New Roman",serif;font-size:10.5pt;line-height:1.16;color:#111}
+  /* Tata letak khusus SK: kop lebih naik dan seluruh bagian tanda tangan/tembusan tetap terlihat saat cetak. */
+  .a4.sk-doc{padding:4mm 12mm 6mm!important;height:auto!important;min-height:297mm!important;max-height:none!important;overflow:visible!important;break-inside:auto!important;page-break-inside:auto!important}
+  .sk-doc .letterhead{margin-top:-2mm!important;padding-top:0!important;margin-bottom:0!important}
+  .sk-doc .letterhead .kop-image{margin-bottom:1mm!important;max-height:40mm;object-fit:contain}
+  .sk-heading{text-align:center;font-weight:bold;line-height:1.14;margin:3mm 0 3mm}
+  .sk-heading .sk-small{font-size:10.5pt}
+  .sk-heading .sk-title{font-size:11.5pt}
+  .sk-row{display:grid;grid-template-columns:34mm 5mm minmax(0,1fr);column-gap:1mm;align-items:start;margin:0 0 2mm}
   .sk-row .sk-colon{text-align:center}
-  .sk-section{margin:0 0 4mm}
-  .sk-section-title{font-weight:bold;text-align:center;margin:4mm 0}
-  .sk-diktum{margin:0 0 3mm}
+  .sk-section{margin:0 0 2mm}
+  .sk-section-title{font-weight:bold;text-align:center;margin:2.5mm 0}
+  .sk-diktum{margin:0 0 2mm}
   .sk-person{margin:1mm 0 1mm 9mm;display:grid;grid-template-columns:25mm 4mm minmax(0,1fr);column-gap:1mm}
-  .sk-sign{margin:5mm 0 0 auto;width:43%;font-size:11pt}
-  .sk-copy{margin-top:5mm;font-size:10pt;line-height:1.2}
+  .sk-sign{margin:2mm 0 0 auto;width:43%;font-size:10.5pt;break-inside:avoid;page-break-inside:avoid}
+  .sk-doc .kamad-qr{width:16mm!important;height:16mm!important;margin:1mm 0 0!important}
+  .sk-sign .name{margin-top:1mm!important}
+  .sk-copy{margin-top:2mm;font-size:9.5pt;line-height:1.12;break-inside:avoid;page-break-inside:avoid}
+  @media print{
+    .a4.sk-doc{height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important;padding:4mm 12mm 6mm!important;break-inside:auto!important;page-break-inside:auto!important}
+    .sk-doc .letterhead{margin-top:-2mm!important}
+    .sk-sign,.sk-copy{break-inside:avoid!important;page-break-inside:avoid!important}
+  }
   </style><div class="a4 sk-doc">${h}
   <div class="sk-heading"><div>KEPUTUSAN</div><div class="sk-small">KEPALA MADRASAH TSANAWIYAH DARUL HIKMAH</div><div class="sk-small">NOMOR : ${esc(num)}</div><div>TENTANG</div><div class="sk-title">PENGANGKATAN ${esc(subject)}</div><div class="sk-small">MADRASAH TSANAWIYAH DARUL HIKMAH</div><div class="sk-small">TAHUN PELAJARAN ${esc(get('tahun'))}</div></div>
   <div class="sk-section-title">KEPALA MADRASAH TSANAWIYAH DARUL HIKMAH</div>
