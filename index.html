@@ -42,11 +42,11 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}
 /* V2.6: prevent responsive preview scaling from leaking into print/PDF. Print always uses the full A4 canvas at 100%. */
 
 /* Format tambahan: Surat Pemberitahuan, dua salinan pada A4 landscape. Seluruh penyesuaian dibatasi ke format ini. */
-.notice-landscape{page:noticeLandscape;box-sizing:border-box;width:297mm;height:210mm;min-height:210mm;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:9mm;padding:7mm 12mm;background:#fff;color:#111;font-family:"Times New Roman",serif;font-size:9pt;line-height:1.08}
+.notice-landscape{page:noticeLandscape;box-sizing:border-box;width:297mm;height:210mm;min-height:210mm;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12mm;padding:7mm 12mm;background:#fff;color:#111;font-family:"Times New Roman",serif;font-size:9pt;line-height:1.08}
 .notice-copy{min-width:0;min-height:0;overflow:visible;font-size:9pt;line-height:1.08}
 .notice-copy-inner{width:100%;height:auto;position:relative}
 .notice-copy .letterhead{padding-bottom:1mm;margin-bottom:2mm;border-bottom:3px double #111}
-.notice-copy .letterhead .kop-image{width:112%;max-width:none;height:auto;max-height:23mm;object-fit:contain;margin:0 -6% 1mm;display:block}
+.notice-copy .letterhead .kop-image{display:block;width:100%;max-width:none;height:auto;max-height:23mm;object-fit:contain;margin:0 auto 1mm;transform:scaleX(1.2);transform-origin:center center}
 .notice-meta{display:grid;grid-template-columns:21mm 4mm minmax(0,1fr);column-gap:1mm;row-gap:.4mm;line-height:1.2;margin:2mm 0 3mm}
 .notice-meta> b:nth-child(3n+2){text-align:center;font-weight:400}
 .notice-recipient{line-height:1.2;margin-bottom:2mm}
@@ -65,15 +65,15 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}
 .notice-table th:nth-child(4),.notice-table td:nth-child(4){width:30%}
 .notice-closing{text-align:justify;text-indent:1cm;margin:2mm 0 1mm;line-height:1.2}
 .notice-salam-end{margin:1mm 0}
-.notice-sign{text-align:center;width:58%;margin:2mm 0 0 auto;line-height:1.15}
-.notice-sign .kamad-qr{width:38px;height:38px;object-fit:contain;display:block;margin:.5mm auto 0!important}
-.notice-sign-name{margin-top:1mm}
+.notice-sign{text-align:center;width:58%;margin:2mm 0 0 auto;line-height:1.15;display:flex;flex-direction:column;align-items:center}
+.notice-sign .kamad-qr{width:38px;height:38px;object-fit:contain;display:block;margin:.5mm auto 0!important;align-self:center}
+.notice-sign-name{margin-top:1mm;text-align:center;width:100%}
 @page noticeLandscape{size:A4 landscape;margin:0}
 @media print{
   #previewModal:has(.notice-landscape){width:297mm!important}
   #previewModal:has(.notice-landscape) .modal-box{width:297mm!important;max-width:none!important}
   .print-area:has(.notice-landscape){box-sizing:border-box!important;width:297mm!important;max-width:297mm!important;min-width:297mm!important;height:auto!important;min-height:210mm!important;margin:0!important;padding:0!important;overflow:visible!important}
-  .notice-landscape{box-sizing:border-box!important;width:297mm!important;height:auto!important;min-height:210mm!important;padding:7mm 12mm!important;gap:9mm!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;overflow:visible!important;break-after:avoid!important;page-break-after:avoid!important}
+  .notice-landscape{box-sizing:border-box!important;width:297mm!important;height:auto!important;min-height:210mm!important;padding:7mm 12mm!important;gap:12mm!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;overflow:visible!important;break-after:avoid!important;page-break-after:avoid!important}
   .notice-copy{height:auto!important;min-height:0!important;overflow:visible!important}
 }
 </style>
