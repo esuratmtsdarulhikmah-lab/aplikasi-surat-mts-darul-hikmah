@@ -298,7 +298,7 @@ const paths=inc.map(x=>x.data?.file_path).filter(Boolean);if(paths.length){const
 const outIds=out.map(x=>x.id).filter(Boolean);const inIds=inc.map(x=>x.id).filter(Boolean);if(outIds.length){const {error}=await sb.from('outgoing_letters').delete().in('id',outIds);if(error){alert('Gagal mengosongkan sampah surat keluar: '+error.message);return}}if(inIds.length){const {error:inError}=await sb.from('incoming_letters').delete().in('id',inIds);if(inError){alert('Gagal mengosongkan sampah surat masuk: '+inError.message);return}}
 state.out=state.out.filter(x=>!isTrashed(x));state.in=state.in.filter(x=>!isTrashed(x));persist();renderTables();alert('Tong Sampah berhasil dikosongkan secara permanen.');}
 
-async function archiveOutgoing(t,num,data){const now=new Date();const row={type:t,nomor:num,tanggal:now.toISOString().slice(0,10),created_at:now.toISOString(),data:data||{}};if(sb&&cloudUser){const dbType=t==='pemberitahuan'?'undangan':t;const dbData={...(data||{}),...(t==='pemberitahuan'?{_templateType:'pemberitahuan'}:{})};const {data:r,error}=await sb.from('outgoing_letters').insert({user_id:cloudUser.id,type:dbType,nomor:num,tanggal:row.tanggal,data:dbData}).select().single();if(error){alert('Surat sudah dipreview tetapi gagal diarsipkan ke cloud: '+error.message);throw error}row.id=r.id;row.created_at=r.created_at||row.created_at;row.data=dbData}state.out.unshift(row);persist()}
+async function archiveOutgoing(t,num,data){const now=new Date();const row={type:t,nomor:num,tanggal:now.toISOString().slice(0,10),created_at:now.toISOString(),data:data||{}};if(sb&&cloudUser){const dbType=(t==='pemberitahuan'||t==='sk')?'undangan':t;const dbData={...(data||{}),...(['pemberitahuan','sk'].includes(t)?{_templateType:t}:{})};const {data:r,error}=await sb.from('outgoing_letters').insert({user_id:cloudUser.id,type:dbType,nomor:num,tanggal:row.tanggal,data:dbData}).select().single();if(error){alert('Surat sudah dipreview tetapi gagal diarsipkan ke cloud: '+error.message);throw error}row.id=r.id;row.created_at=r.created_at||row.created_at;row.data=dbData}state.out.unshift(row);persist()}
 function label(t){return {aktif:'Surat Keterangan Aktif Siswa',tugas:'Surat Tugas',undangan:'Surat Undangan Guru',sppd:'SPPD',pemberitahuan:'Surat Pemberitahuan',sk:'SK Pengangkatan'}[t]||t}
 function updateMetrics(){document.getElementById('mKeluar').textContent=activeOutgoing().length;document.getElementById('mMasuk').textContent=activeIncoming().length}
 async function uploadSelectedAssets(){if(!sb||!cloudUser)throw new Error('Hubungkan Supabase terlebih dahulu.');for(const [inputId,key,prefix] of [['kopFile','kop_url','kop'],['qrFile','kamad_qr_url','kamad-qr']]){const input=document.getElementById(inputId);const file=input&&input.files[0];if(!file)continue;if(inputId==='kopFile'&&!['image/png','image/jpeg'].includes(file.type)){throw new Error('Kop harus berupa JPG/JPEG atau PNG.')}if(inputId==='qrFile'&&!['image/png','image/jpeg'].includes(file.type)){throw new Error('QR/tanda tangan harus berupa JPG/JPEG atau PNG.')}if(file.size>5*1024*1024)throw new Error('Ukuran file gambar maksimal 5 MB.');const ext=file.name.split('.').pop().toLowerCase();const path=`${prefix}/${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;const {error}=await sb.storage.from('madrasah-files').upload(path,file,{upsert:true,contentType:file.type});if(error)throw new Error('Upload gagal: '+error.message);const {data}=sb.storage.from('madrasah-files').getPublicUrl(path);state.settings[key]=data.publicUrl;input.value='';}}
@@ -347,28 +347,28 @@ generate = async function(){
   const subject=get('jenis').trim().toUpperCase();
   const date=get('tanggalSk');
   const html=`<style>
-  .sk-doc{font-family:"Times New Roman",serif;font-size:10.5pt;line-height:1.16;color:#111}
-  /* Tata letak khusus SK: kop lebih naik dan seluruh bagian tanda tangan/tembusan tetap terlihat saat cetak. */
-  .a4.sk-doc{padding:4mm 12mm 6mm!important;height:auto!important;min-height:297mm!important;max-height:none!important;overflow:visible!important;break-inside:auto!important;page-break-inside:auto!important}
-  .sk-doc .letterhead{margin-top:-2mm!important;padding-top:0!important;margin-bottom:0!important}
-  .sk-doc .letterhead .kop-image{margin-bottom:1mm!important;max-height:40mm;object-fit:contain}
-  .sk-heading{text-align:center;font-weight:bold;line-height:1.14;margin:3mm 0 3mm}
-  .sk-heading .sk-small{font-size:10.5pt}
-  .sk-heading .sk-title{font-size:11.5pt}
-  .sk-row{display:grid;grid-template-columns:34mm 5mm minmax(0,1fr);column-gap:1mm;align-items:start;margin:0 0 2mm}
+  .sk-doc{font-family:"Times New Roman",serif;font-size:9pt;line-height:1.02;color:#111}
+  /* Khusus SK Pengangkatan: ruang vertikal dipadatkan agar tanda tangan dan Tembusan ikut tercetak. */
+  .a4.sk-doc{padding:2mm 12mm 3mm!important;height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important;break-inside:auto!important;page-break-inside:auto!important}
+  .sk-doc .letterhead{margin-top:-3mm!important;padding-top:0!important;margin-bottom:0!important}
+  .sk-doc .letterhead .kop-image{margin-bottom:0!important;max-height:30mm!important;object-fit:contain}
+  .sk-heading{text-align:center;font-weight:bold;line-height:1.02;margin:1mm 0 1.5mm}
+  .sk-heading .sk-small{font-size:9pt}
+  .sk-heading .sk-title{font-size:10pt}
+  .sk-row{display:grid;grid-template-columns:34mm 5mm minmax(0,1fr);column-gap:1mm;align-items:start;margin:0 0 .8mm}
   .sk-row .sk-colon{text-align:center}
-  .sk-section{margin:0 0 2mm}
-  .sk-section-title{font-weight:bold;text-align:center;margin:2.5mm 0}
-  .sk-diktum{margin:0 0 2mm}
-  .sk-person{margin:1mm 0 1mm 9mm;display:grid;grid-template-columns:25mm 4mm minmax(0,1fr);column-gap:1mm}
-  .sk-sign{margin:2mm 0 0 auto;width:43%;font-size:10.5pt;break-inside:avoid;page-break-inside:avoid}
-  .sk-doc .kamad-qr{width:16mm!important;height:16mm!important;margin:1mm 0 0!important}
-  .sk-sign .name{margin-top:1mm!important}
-  .sk-copy{margin-top:2mm;font-size:9.5pt;line-height:1.12;break-inside:avoid;page-break-inside:avoid}
+  .sk-section{margin:0 0 .8mm}
+  .sk-section-title{font-weight:bold;text-align:center;margin:1mm 0}
+  .sk-diktum{margin:0 0 .8mm}
+  .sk-person{margin:.5mm 0 .5mm 9mm;display:grid;grid-template-columns:25mm 4mm minmax(0,1fr);column-gap:1mm}
+  .sk-sign{margin:1mm 0 0 auto;width:43%;font-size:9pt;line-height:1.02;break-inside:avoid;page-break-inside:avoid}
+  .sk-doc .kamad-qr{width:12mm!important;height:12mm!important;margin:.5mm 0 0!important}
+  .sk-sign .name{margin-top:.5mm!important}
+  .sk-copy{margin-top:1mm;font-size:8.5pt;line-height:1;break-inside:avoid;page-break-inside:avoid}
   @media print{
-    .a4.sk-doc{height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important;padding:4mm 12mm 6mm!important;break-inside:auto!important;page-break-inside:auto!important}
-    .sk-doc .letterhead{margin-top:-2mm!important}
-    .sk-sign,.sk-copy{break-inside:avoid!important;page-break-inside:avoid!important}
+    #preview .a4.sk-doc{box-sizing:border-box!important;height:auto!important;min-height:0!important;max-height:none!important;overflow:visible!important;padding:2mm 12mm 3mm!important;break-inside:auto!important;page-break-inside:auto!important}
+    #preview .sk-doc .letterhead{margin-top:-3mm!important}
+    #preview .sk-sign,#preview .sk-copy{break-inside:avoid!important;page-break-inside:avoid!important}
   }
   </style><div class="a4 sk-doc">${h}
   <div class="sk-heading"><div>KEPUTUSAN</div><div class="sk-small">KEPALA MADRASAH TSANAWIYAH DARUL HIKMAH</div><div class="sk-small">NOMOR : ${esc(num)}</div><div>TENTANG</div><div class="sk-title">PENGANGKATAN ${esc(subject)}</div><div class="sk-small">MADRASAH TSANAWIYAH DARUL HIKMAH</div><div class="sk-small">TAHUN PELAJARAN ${esc(get('tahun'))}</div></div>
