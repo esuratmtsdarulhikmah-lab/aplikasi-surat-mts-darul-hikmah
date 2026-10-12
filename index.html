@@ -47,12 +47,12 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}
 .notice-copy-inner{width:100%;height:auto;position:relative}
 .notice-copy .letterhead{padding-bottom:1mm;margin-bottom:2mm;border-bottom:3px double #111}
 .notice-copy .letterhead .kop-image{display:block;width:100%;max-width:none;height:auto;max-height:23mm;object-fit:contain;margin:0 auto 1mm;transform:scaleX(1.2);transform-origin:center center}
-.notice-meta{display:grid;grid-template-columns:21mm 4mm minmax(0,1fr);column-gap:1mm;row-gap:.4mm;line-height:1.2;margin:2mm 0 3mm}
+.notice-meta{display:grid;grid-template-columns:15mm 4mm minmax(0,1fr);column-gap:1mm;row-gap:.4mm;line-height:1.2;margin:2mm 0 3mm}
 .notice-meta> b:nth-child(3n+2){text-align:center;font-weight:400}
 .notice-recipient{line-height:1.2;margin-bottom:2mm}
-.notice-recipient-line{display:grid;grid-template-columns:21mm 4mm minmax(0,1fr)}
+.notice-recipient-line{display:grid;grid-template-columns:15mm 4mm minmax(0,1fr)}
 .notice-recipient-line b{text-align:center;font-weight:400}
-.notice-recipient-indent{margin-left:25mm}
+.notice-recipient-indent{margin-left:19mm}
 .notice-salam{margin:2mm 0}
 .notice-paragraph{text-align:justify;text-indent:1cm;margin:2mm 0;line-height:1.2}
 .notice-intro{margin:2mm 0}
@@ -65,9 +65,9 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}
 .notice-table th:nth-child(4),.notice-table td:nth-child(4){width:30%}
 .notice-closing{text-align:justify;text-indent:1cm;margin:2mm 0 1mm;line-height:1.2}
 .notice-salam-end{margin:1mm 0}
-.notice-sign{text-align:center;width:58%;margin:2mm 0 0 auto;line-height:1.15;display:flex;flex-direction:column;align-items:center} .notice-sign-date,.notice-sign-title{display:block;width:100%;text-align:center}
-.notice-sign .kamad-qr{width:38px;height:38px;object-fit:contain;display:block;margin:.5mm auto 0!important;align-self:center}
-.notice-sign-name{margin-top:1mm;text-align:center;width:100%}
+.notice-sign{text-align:center;width:58%;margin:2mm 0 0 auto;line-height:1.15;display:flex;flex-direction:column;align-items:center;gap:0}.notice-sign-date,.notice-sign-title{display:block;width:100%;text-align:center;margin:0;padding:0}
+.notice-sign .kamad-qr{width:38px;height:38px;object-fit:contain;display:block;margin:1mm auto!important;align-self:center;flex:0 0 auto}
+.notice-sign-name{margin-top:0;text-align:center;width:100%;display:block}
 @page noticeLandscape{size:A4 landscape;margin:0}
 @media print{
   #previewModal:has(.notice-landscape){width:297mm!important}
