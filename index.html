@@ -76,6 +76,15 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}
   .notice-landscape{box-sizing:border-box!important;width:297mm!important;height:auto!important;min-height:210mm!important;padding:7mm 12mm!important;gap:12mm!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;overflow:visible!important;break-after:avoid!important;page-break-after:avoid!important}
   .notice-copy{height:auto!important;min-height:0!important;overflow:visible!important}
 }
+
+/* Dashboard visual refresh: scoped only to the Dashboard section */
+.dashboard-page{--dash-forest:#123a2b;--dash-deep:#0c2a20;--dash-gold:#c8a96a;--dash-mint:#e9f3ec;}
+.dashboard-hero{position:relative;isolation:isolate;overflow:hidden;display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:190px;padding:30px 34px;border-radius:22px;background:linear-gradient(115deg,#102f23 0%,#174b36 62%,#226044 100%);color:#fff;box-shadow:0 14px 34px #103c2924;margin-bottom:26px}
+.dashboard-hero-copy{position:relative;z-index:2;max-width:680px}.dashboard-eyebrow{display:flex;align-items:center;gap:9px;color:#d8c28f;font-size:10px;font-weight:800;letter-spacing:1.8px;margin-bottom:16px}.dashboard-eyebrow span{width:22px;height:2px;background:var(--dash-gold);border-radius:2px}.dashboard-hero h3{font-size:clamp(23px,2.4vw,32px);line-height:1.2;margin:0 0 10px;color:#fff;letter-spacing:-.7px}.dashboard-hero p{max-width:590px;margin:0;color:#d2e2d8;font-size:14px;line-height:1.8}.dashboard-hero-mark{position:relative;z-index:2;display:flex;min-width:175px;align-items:center;flex-direction:column;gap:7px;color:#f5e7c2;font-size:10px;letter-spacing:1px;font-weight:800;text-align:center}.dashboard-mark-ring{width:82px;height:82px;border:1px solid #d6bd7c99;border-radius:50%;display:grid;place-items:center;color:#f2d99a;font-family:Georgia,serif;font-size:27px;letter-spacing:-2px;box-shadow:inset 0 0 0 6px #ffffff08,0 0 0 8px #ffffff08}.dashboard-hero-mark small{font-size:8px;color:#bcd0c2;letter-spacing:1.5px}.dashboard-hero-glow{position:absolute;z-index:1;right:18%;top:-140px;width:350px;height:350px;border:1px solid #ffffff0d;border-radius:50%;box-shadow:0 0 0 35px #ffffff05,0 0 0 75px #ffffff04;pointer-events:none}
+.dashboard-section-heading{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:0 0 14px}.dashboard-section-heading>div:first-child>span{font-size:10px;letter-spacing:1.6px;font-weight:800;color:#a1854b}.dashboard-section-heading h3{margin:4px 0 0;font-size:19px;color:#18392b;letter-spacing:-.3px}.dashboard-live{display:flex;align-items:center;gap:8px;font-size:11px;color:#65766c;background:#fff;border:1px solid #e0e8e2;padding:8px 11px;border-radius:30px}.dashboard-live i{width:7px;height:7px;border-radius:50%;background:#4b9b70;box-shadow:0 0 0 3px #4b9b7018}
+.dashboard-cards{gap:16px}.dashboard-cards .dashboard-stat{position:relative;overflow:hidden;min-width:0;border:1px solid #e2e9e4;border-radius:18px;padding:19px 20px 17px;box-shadow:0 7px 22px #163d2508;transition:transform .18s ease,box-shadow .18s ease}.dashboard-cards .dashboard-stat:hover{transform:translateY(-3px);box-shadow:0 13px 26px #163d2514}.dashboard-stat-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:17px}.dashboard-stat-icon{display:grid;place-items:center;width:39px;height:39px;border-radius:12px;background:#e8f2eb;color:#235d41;font-weight:800;font-size:21px}.dashboard-stat-caption{font-size:9px;font-weight:800;letter-spacing:1.3px;color:#9aa79e}.dashboard-stat .muted{font-size:12px;color:#66776c}.dashboard-stat .metric{font-size:31px;color:#172e22;line-height:1.1;margin:8px 0 10px;font-weight:800}.dashboard-stat-foot{padding-top:12px;border-top:1px solid #edf1ee;color:#849087;font-size:10px;line-height:1.4}.dashboard-cards .stat-in .dashboard-stat-icon{background:#e9f0f8;color:#416b9b}.dashboard-cards .stat-template .dashboard-stat-icon{background:#f7f0df;color:#98763a}.dashboard-cards .stat-paper .dashboard-stat-icon{background:#f1ebf7;color:#8060a0}.dashboard-info-panel{display:flex;align-items:center;gap:15px;padding:19px 21px;border-radius:18px;border-color:#e0e8e2;box-shadow:0 7px 20px #163d2506}.dashboard-info-symbol{flex:0 0 40px;width:40px;height:40px;display:grid;place-items:center;border-radius:13px;background:#f7f0df;color:#9b7c3d;font-size:20px}.dashboard-info-panel>div:nth-child(2){min-width:0;flex:1}.dashboard-info-title{font-size:13px;font-weight:800;color:#244633;margin-bottom:4px}.dashboard-info-panel p{margin:0;font-size:12px;line-height:1.65;color:#718076}.dashboard-info-tag{font-size:9px;font-weight:800;letter-spacing:1px;color:#8b784c;white-space:nowrap}
+@media(max-width:900px){.dashboard-hero{padding:25px;min-height:165px}.dashboard-hero-mark{min-width:130px}.dashboard-mark-ring{width:68px;height:68px}.dashboard-cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.dashboard-hero{padding:23px 20px;min-height:0}.dashboard-hero-mark{display:none}.dashboard-hero p{font-size:13px}.dashboard-eyebrow{font-size:9px;letter-spacing:1.2px}.dashboard-section-heading{align-items:flex-start;flex-direction:column}.dashboard-cards{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.dashboard-cards .dashboard-stat{padding:14px 13px}.dashboard-stat-top{margin-bottom:13px}.dashboard-stat-icon{width:34px;height:34px}.dashboard-stat .metric{font-size:27px}.dashboard-stat-foot{font-size:9px}.dashboard-info-panel{align-items:flex-start;padding:15px;gap:11px}.dashboard-info-tag{display:none}}
 </style>
 </head>
 <body>
@@ -105,14 +114,24 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}
 <main class="main">
   <div class="top"><h2 id="pageTitle">Dashboard</h2><div class="top-actions"><div class="userpill">● Administrator</div><button class="btn btn-logout" onclick="logout()">⇥ Logout</button></div></div>
 
-  <section id="dashboard" class="page active">
-    <div class="cards">
-      <div class="card"><div class="muted">Surat Keluar</div><div class="metric" id="mKeluar">0</div></div>
-      <div class="card"><div class="muted">Surat Masuk</div><div class="metric" id="mMasuk">0</div></div>
-      <div class="card"><div class="muted">Template Surat</div><div class="metric">5</div></div>
-      <div class="card"><div class="muted">Ukuran Cetak</div><div class="metric">A4</div></div>
+  <section id="dashboard" class="page active dashboard-page">
+    <div class="dashboard-hero">
+      <div class="dashboard-hero-copy">
+        <div class="dashboard-eyebrow"><span></span> SISTEM ADMINISTRASI MADRASAH</div>
+        <h3>Selamat Datang di Dashboard</h3>
+        <p>Administrasi surat MTs Darul Hikmah dalam satu tempat, lebih tertata dan mudah dipantau.</p>
+      </div>
+      <div class="dashboard-hero-mark" aria-hidden="true"><div class="dashboard-mark-ring">DH</div><span>MTs. DARUL HIKMAH</span><small>ADMINISTRASI SURAT</small></div>
+      <div class="dashboard-hero-glow"></div>
     </div>
-    <div class="panel"><div class="notice">Fondasi template sudah mengikuti contoh surat madrasah. Kop, susunan isi, tanda tangan, dan SPPD 2 halaman dipisahkan sebagai template masing-masing.</div></div>
+    <div class="dashboard-section-heading"><div><span>RINGKASAN</span><h3>Ikhtisar Administrasi</h3></div><div class="dashboard-live"><i></i> Ringkasan sistem</div></div>
+    <div class="cards dashboard-cards">
+      <div class="card dashboard-stat stat-out"><div class="dashboard-stat-top"><span class="dashboard-stat-icon">↗</span><span class="dashboard-stat-caption">ARSIP</span></div><div class="muted">Surat Keluar</div><div class="metric" id="mKeluar">0</div><div class="dashboard-stat-foot">Total surat keluar tercatat</div></div>
+      <div class="card dashboard-stat stat-in"><div class="dashboard-stat-top"><span class="dashboard-stat-icon">↙</span><span class="dashboard-stat-caption">ARSIP</span></div><div class="muted">Surat Masuk</div><div class="metric" id="mMasuk">0</div><div class="dashboard-stat-foot">Total surat masuk tercatat</div></div>
+      <div class="card dashboard-stat stat-template"><div class="dashboard-stat-top"><span class="dashboard-stat-icon">▤</span><span class="dashboard-stat-caption">DOKUMEN</span></div><div class="muted">Template Surat</div><div class="metric">5</div><div class="dashboard-stat-foot">Format surat tersedia</div></div>
+      <div class="card dashboard-stat stat-paper"><div class="dashboard-stat-top"><span class="dashboard-stat-icon">A4</span><span class="dashboard-stat-caption">CETAK</span></div><div class="muted">Ukuran Cetak</div><div class="metric">A4</div><div class="dashboard-stat-foot">Standar dokumen surat</div></div>
+    </div>
+    <div class="panel dashboard-info-panel"><div class="dashboard-info-symbol">✦</div><div><div class="dashboard-info-title">Rapi, konsisten, dan siap digunakan</div><p>Template surat, kop madrasah, serta susunan tanda tangan dikelola dalam sistem administrasi yang terpusat.</p></div><div class="dashboard-info-tag">MTs DARUL HIKMAH</div></div>
   </section>
 
   <section id="buat" class="page">
