@@ -144,14 +144,15 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}
   </section>
 
   <section id="buat" class="page create-page">
-    <div class="create-hero"><div class="create-hero-content"><div class="create-eyebrow"><span></span> PUSAT PEMBUATAN DOKUMEN</div><h3>Buat Surat Madrasah</h3><p>Pilih format surat yang dibutuhkan. Isi data, tinjau hasilnya, lalu cetak atau simpan ke arsip.</p><div class="create-hero-meta"><span><b>05</b> FORMAT TERSEDIA</span><i></i><span><b>A4</b> SIAP CETAK</span></div></div><div class="create-hero-art" aria-hidden="true"><div class="create-doc-back"></div><div class="create-doc-front"><span class="create-doc-seal">DH</span><i></i><i></i><i></i><em></em></div><div class="create-art-spark">✦</div></div></div>
-    <div class="create-heading"><div><span>DAFTAR TEMPLATE</span><h3>Pilih Jenis Surat</h3><p>Setiap format memiliki susunan yang disesuaikan dengan kebutuhan administrasi.</p></div><div class="create-count"><strong>05</strong><span>FORMAT</span></div></div>
+    <div class="create-hero"><div class="create-hero-content"><div class="create-eyebrow"><span></span> PUSAT PEMBUATAN DOKUMEN</div><h3>Buat Surat Madrasah</h3><p>Pilih format surat yang dibutuhkan. Isi data, tinjau hasilnya, lalu cetak atau simpan ke arsip.</p><div class="create-hero-meta"><span><b>06</b> FORMAT TERSEDIA</span><i></i><span><b>A4</b> SIAP CETAK</span></div></div><div class="create-hero-art" aria-hidden="true"><div class="create-doc-back"></div><div class="create-doc-front"><span class="create-doc-seal">DH</span><i></i><i></i><i></i><em></em></div><div class="create-art-spark">✦</div></div></div>
+    <div class="create-heading"><div><span>DAFTAR TEMPLATE</span><h3>Pilih Jenis Surat</h3><p>Setiap format memiliki susunan yang disesuaikan dengan kebutuhan administrasi.</p></div><div class="create-count"><strong>06</strong><span>FORMAT</span></div></div>
     <div class="create-template-grid">
       <button class="create-template-card create-aktif" onclick="openForm('aktif')"><span class="create-card-top"><span class="create-card-icon">▤</span><span class="create-card-index">01 / 05</span></span><span class="create-card-title">Surat Keterangan Aktif Siswa</span><span class="create-card-desc">Keterangan resmi status aktif siswa di madrasah.</span><span class="create-card-bottom"><span>BUKA FORMULIR</span><b>↗</b></span></button>
       <button class="create-template-card create-tugas" onclick="openForm('tugas')"><span class="create-card-top"><span class="create-card-icon">✦</span><span class="create-card-index">02 / 05</span></span><span class="create-card-title">Surat Tugas</span><span class="create-card-desc">Surat penugasan untuk kegiatan atau keperluan dinas.</span><span class="create-card-bottom"><span>BUKA FORMULIR</span><b>↗</b></span></button>
       <button class="create-template-card create-undangan" onclick="openForm('undangan')"><span class="create-card-top"><span class="create-card-icon">✉</span><span class="create-card-index">03 / 05</span></span><span class="create-card-title">Surat Undangan Guru</span><span class="create-card-desc">Undangan resmi bagi dewan guru dan karyawan.</span><span class="create-card-bottom"><span>BUKA FORMULIR</span><b>↗</b></span></button>
       <button class="create-template-card create-sppd" onclick="openForm('sppd')"><span class="create-card-top"><span class="create-card-icon">⇢</span><span class="create-card-index">04 / 05</span></span><span class="create-card-title">Surat Perintah Perjalanan Dinas (SPPD)</span><span class="create-card-desc">Dokumen perjalanan dinas dengan format dua halaman.</span><span class="create-card-bottom"><span>BUKA FORMULIR</span><b>↗</b></span></button>
-      <button class="create-template-card create-pemberitahuan" onclick="openForm('pemberitahuan')"><span class="create-card-top"><span class="create-card-icon">▣</span><span class="create-card-index">05 / 05</span></span><span class="create-card-title">Surat Pemberitahuan</span><span class="create-card-desc">Satu lembar A4 landscape berisi dua salinan surat.</span><span class="create-card-bottom"><span>BUKA FORMULIR</span><b>↗</b></span><span class="create-card-tag">A4 LANDSCAPE · 2 SALINAN</span></button>
+      <button class="create-template-card create-pemberitahuan" onclick="openForm('pemberitahuan')"><span class="create-card-top"><span class="create-card-icon">▣</span><span class="create-card-index">05 / 06</span></span><span class="create-card-title">Surat Pemberitahuan</span><span class="create-card-desc">Satu lembar A4 landscape berisi dua salinan surat.</span><span class="create-card-bottom"><span>BUKA FORMULIR</span><b>↗</b></span><span class="create-card-tag">A4 LANDSCAPE · 2 SALINAN</span></button>
+      <button class="create-template-card create-sk" onclick="openForm('sk')"><span class="create-card-top"><span class="create-card-icon">§</span><span class="create-card-index">06 / 06</span></span><span class="create-card-title">SK Pengangkatan</span><span class="create-card-desc">Surat keputusan pengangkatan pejabat atau petugas madrasah.</span><span class="create-card-bottom"><span>BUKA FORMULIR</span><b>↗</b></span></button>
     </div>
     <div class="create-footer-note"><span>✦</span><div><strong>Praktis dan terpusat</strong><p>Pilih template untuk mulai mengisi surat. Hasil dapat ditinjau sebelum dicetak.</p></div></div>
   </section>
@@ -298,11 +299,85 @@ const outIds=out.map(x=>x.id).filter(Boolean);const inIds=inc.map(x=>x.id).filte
 state.out=state.out.filter(x=>!isTrashed(x));state.in=state.in.filter(x=>!isTrashed(x));persist();renderTables();alert('Tong Sampah berhasil dikosongkan secara permanen.');}
 
 async function archiveOutgoing(t,num,data){const now=new Date();const row={type:t,nomor:num,tanggal:now.toISOString().slice(0,10),created_at:now.toISOString(),data:data||{}};if(sb&&cloudUser){const dbType=t==='pemberitahuan'?'undangan':t;const dbData={...(data||{}),...(t==='pemberitahuan'?{_templateType:'pemberitahuan'}:{})};const {data:r,error}=await sb.from('outgoing_letters').insert({user_id:cloudUser.id,type:dbType,nomor:num,tanggal:row.tanggal,data:dbData}).select().single();if(error){alert('Surat sudah dipreview tetapi gagal diarsipkan ke cloud: '+error.message);throw error}row.id=r.id;row.created_at=r.created_at||row.created_at;row.data=dbData}state.out.unshift(row);persist()}
-function label(t){return {aktif:'Surat Keterangan Aktif Siswa',tugas:'Surat Tugas',undangan:'Surat Undangan Guru',sppd:'SPPD',pemberitahuan:'Surat Pemberitahuan'}[t]||t}
+function label(t){return {aktif:'Surat Keterangan Aktif Siswa',tugas:'Surat Tugas',undangan:'Surat Undangan Guru',sppd:'SPPD',pemberitahuan:'Surat Pemberitahuan',sk:'SK Pengangkatan'}[t]||t}
 function updateMetrics(){document.getElementById('mKeluar').textContent=activeOutgoing().length;document.getElementById('mMasuk').textContent=activeIncoming().length}
 async function uploadSelectedAssets(){if(!sb||!cloudUser)throw new Error('Hubungkan Supabase terlebih dahulu.');for(const [inputId,key,prefix] of [['kopFile','kop_url','kop'],['qrFile','kamad_qr_url','kamad-qr']]){const input=document.getElementById(inputId);const file=input&&input.files[0];if(!file)continue;if(inputId==='kopFile'&&!['image/png','image/jpeg'].includes(file.type)){throw new Error('Kop harus berupa JPG/JPEG atau PNG.')}if(inputId==='qrFile'&&!['image/png','image/jpeg'].includes(file.type)){throw new Error('QR/tanda tangan harus berupa JPG/JPEG atau PNG.')}if(file.size>5*1024*1024)throw new Error('Ukuran file gambar maksimal 5 MB.');const ext=file.name.split('.').pop().toLowerCase();const path=`${prefix}/${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`;const {error}=await sb.storage.from('madrasah-files').upload(path,file,{upsert:true,contentType:file.type});if(error)throw new Error('Upload gagal: '+error.message);const {data}=sb.storage.from('madrasah-files').getPublicUrl(path);state.settings[key]=data.publicUrl;input.value='';}}
 async function saveSettings(){['yayasan','madrasah','nsm','npsn','nus','alamat','kamad','nip'].forEach(k=>state.settings[k]=document.getElementById('set'+k.charAt(0).toUpperCase()+k.slice(1)).value);if(sb&&cloudUser){try{await uploadSelectedAssets();const payload={id:1,...state.settings,updated_at:new Date().toISOString()};const {error}=await sb.from('madrasah_settings').upsert(payload,{onConflict:'id'});if(error)throw new Error('Gagal menyimpan pengaturan ke cloud: '+error.message)}catch(e){alert(e.message);return}}persist();fillSettings();alert('Pengaturan tersimpan.')}
 async function uploadAssets(){try{await uploadSelectedAssets();if(sb&&cloudUser){const payload={id:1,...state.settings,updated_at:new Date().toISOString()};const {error}=await sb.from('madrasah_settings').upsert(payload,{onConflict:'id'});if(error)throw new Error('Gagal menyimpan URL file ke cloud: '+error.message)}persist();fillSettings();alert('Kop/QR berhasil diupload dan disimpan.')}catch(e){alert(e.message)}}
+
+
+/* Tambahan terisolasi: template SK Pengangkatan. Template lama tetap memakai fungsi aslinya. */
+const openFormExisting = openForm;
+openForm = function(type){
+  if(type!=='sk') return openFormExisting(type);
+  currentType='sk';
+  document.getElementById('formModal').classList.add('open');
+  document.getElementById('formTitle').textContent='SK Pengangkatan';
+  const items=[
+    ['nomor','Nomor SK','A2/012/SK/MTs.SS.13.32.633/07/2026'],
+    ['jenis','Jabatan yang Diangkat','WAKA URUSAN KURIKULUM'],
+    ['tahun','Tahun Pelajaran','2026/2027'],
+    ['menimbang','Menimbang','Bahwa dalam rangka mendukung pelaksanaan Kegiatan Belajar Mengajar (KBM) Madrasah Tsanawiyah Darul Hikmah secara efektif dan efisien, maka perlu mengangkat Wakil Kepala Madrasah yang ditetapkan dengan surat keputusan.'],
+    ['mengingat','Mengingat','1. Undang-Undang Nomor 20 Tahun 2003 tentang Sistem Pendidikan Nasional;\n2. Peraturan Pemerintah Nomor 28 Tahun 1990;\n3. Keputusan Menteri Agama Nomor 372 Tahun 1993;\n4. Keputusan Menteri Agama Nomor 28 Tahun 1999.'],
+    ['program','Program Kerja','Program Kerja MTs Darul Hikmah Tahun Pelajaran 2026/2027;'],
+    ['rapat','Tanggal Rapat','11 Juli 2026'],
+    ['mulai','Mulai Bertugas','11 Juli 2026'],
+    ['nama','Nama','FARIDATUL JANNAH, S.Pd.'],
+    ['pegid','PegID','91000084121152'],
+    ['jabatan','Jabatan','Waka. Urusan Kurikulum'],
+    ['unit','Unit Kerja','MTs Darul Hikmah'],
+    ['kedua','Diktum Kedua','Kepada yang bersangkutan agar melaksanakan tugas dan fungsinya dengan penuh tanggung jawab;'],
+    ['ketiga','Diktum Ketiga','Melaporkan pelaksanaan tugas dan fungsinya kepada Kepala Madrasah secara periodik;'],
+    ['berakhir','Tanggal Berakhir','30 Juni 2027'],
+    ['ditetapkan','Ditetapkan di','Jember'],
+    ['tanggalSk','Tanggal SK','11 Juli 2026'],
+    ['tembusan','Tembusan','1. Pengawas Madrasah KKMTsN 1 Jember;\n2. Ketua Komite MTs. Darul Hikmah;\n3. Arsip.']
+  ];
+  const esc=v=>String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  document.getElementById('formBody').innerHTML='<div class="grid2">'+items.map(([id,label,value])=>'<div class="field"><label>'+label+'</label>'+(['menimbang','mengingat','program','kedua','ketiga','tembusan'].includes(id)?'<textarea id="f_'+id+'" rows="3">'+esc(value)+'</textarea>':'<input id="f_'+id+'" value="'+esc(value)+'">')+'</div>').join('')+'</div><button class="btn btn-primary" onclick="generate()">Preview &amp; Arsipkan</button>';
+};
+const generateExisting = generate;
+generate = async function(){
+  if(currentType!=='sk') return generateExisting();
+  const get=id=>document.getElementById('f_'+id)?.value||'';
+  const esc=v=>String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  const lines=v=>esc(v).replace(/\r?\n/g,'<br>');
+  const h=head();
+  const num=get('nomor');
+  const subject=get('jenis').trim().toUpperCase();
+  const date=get('tanggalSk');
+  const html=`<style>
+  .sk-doc{font-family:"Times New Roman",serif;font-size:11pt;line-height:1.24;color:#111}
+  .sk-heading{text-align:center;font-weight:bold;line-height:1.22;margin:7mm 0 5mm}
+  .sk-heading .sk-small{font-size:11pt}
+  .sk-heading .sk-title{font-size:12pt}
+  .sk-row{display:grid;grid-template-columns:34mm 5mm minmax(0,1fr);column-gap:1mm;align-items:start;margin:0 0 3mm}
+  .sk-row .sk-colon{text-align:center}
+  .sk-section{margin:0 0 4mm}
+  .sk-section-title{font-weight:bold;text-align:center;margin:4mm 0}
+  .sk-diktum{margin:0 0 3mm}
+  .sk-person{margin:1mm 0 1mm 9mm;display:grid;grid-template-columns:25mm 4mm minmax(0,1fr);column-gap:1mm}
+  .sk-sign{margin:5mm 0 0 auto;width:43%;font-size:11pt}
+  .sk-copy{margin-top:5mm;font-size:10pt;line-height:1.2}
+  </style><div class="a4 sk-doc">${h}
+  <div class="sk-heading"><div>KEPUTUSAN</div><div class="sk-small">KEPALA MADRASAH TSANAWIYAH DARUL HIKMAH</div><div class="sk-small">NOMOR : ${esc(num)}</div><div>TENTANG</div><div class="sk-title">PENGANGKATAN ${esc(subject)}</div><div class="sk-small">MADRASAH TSANAWIYAH DARUL HIKMAH</div><div class="sk-small">TAHUN PELAJARAN ${esc(get('tahun'))}</div></div>
+  <div class="sk-section-title">KEPALA MADRASAH TSANAWIYAH DARUL HIKMAH</div>
+  <div class="sk-row"><b>Menimbang</b><span class="sk-colon">:</span><span>${lines(get('menimbang'))}</span></div>
+  <div class="sk-row"><b>Mengingat</b><span class="sk-colon">:</span><span>${lines(get('mengingat'))}</span></div>
+  <div class="sk-row"><b>Memperhatikan</b><span class="sk-colon">:</span><span>1. ${lines(get('program'))}<br>2. Hasil keputusan Rapat Tanggal ${esc(get('rapat'))}.</span></div>
+  <div class="sk-section-title">MEMUTUSKAN:</div>
+  <div class="sk-row"><b>Menetapkan</b><span class="sk-colon">:</span><span></span></div>
+  <div class="sk-diktum"><div class="sk-row"><b>Pertama</b><span class="sk-colon">:</span><span>Terhitung Mulai Tugas Tanggal ${esc(get('mulai'))} mengangkat:</span></div>
+  <div class="sk-person"><span>Nama</span><span>:</span><span>${esc(get('nama'))}</span><span>PegID</span><span>:</span><span>${esc(get('pegid'))}</span><span>Jabatan</span><span>:</span><span>${esc(get('jabatan'))}</span><span>Unit Kerja</span><span>:</span><span>${esc(get('unit'))}</span></div></div>
+  <div class="sk-row"><b>Kedua</b><span class="sk-colon">:</span><span>${lines(get('kedua'))}</span></div>
+  <div class="sk-row"><b>Ketiga</b><span class="sk-colon">:</span><span>${lines(get('ketiga'))}</span></div>
+  <div class="sk-row"><b>Keempat</b><span class="sk-colon">:</span><span>Surat Keputusan ini berlaku sejak tanggal ${esc(get('mulai'))} dan berakhir pada ${esc(get('berakhir'))} dengan catatan jika terdapat kekeliruan dalam keputusan ini, akan diperbaiki sebagaimana mestinya.</span></div>
+  <div class="sk-sign">${esc('Ditetapkan di : '+get('ditetapkan'))}<br>${esc('Pada tanggal : '+date)}<br><br><b>Kepala Madrasah,</b>${state.settings.kamad_qr_url?'<img class="kamad-qr" src="'+esc(state.settings.kamad_qr_url)+'" alt="QR tanda tangan Kepala Madrasah">':''}<div class="name">${esc(state.settings.kamad)}</div>NIP. ${esc(state.settings.nip||'-')}</div>
+  <div class="sk-copy">Tembusan :<br>${lines(get('tembusan'))}</div></div>`;
+  document.getElementById('preview').innerHTML=html;
+  document.getElementById('previewModal').classList.add('open');
+  await archiveOutgoing('sk',num,{html});
+};
 
 renderTables();updateMetrics();
 boot();
