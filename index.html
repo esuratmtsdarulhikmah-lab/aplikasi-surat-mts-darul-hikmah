@@ -94,7 +94,46 @@ button,input,select,textarea{font:inherit}button{cursor:pointer}
 .create-template-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}.create-template-card{position:relative;display:flex;flex-direction:column;align-items:stretch;min-width:0;min-height:195px;padding:19px 19px 16px;text-align:left;border:1px solid #e1e9e3;border-radius:17px;background:linear-gradient(160deg,#fff 0%,#fcfdfc 100%);color:#18392b;box-shadow:0 7px 22px #163d2508;cursor:pointer;transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease;font:inherit}.create-template-card:hover{transform:translateY(-4px);border-color:#b9cebf;box-shadow:0 14px 28px #163d2514}.create-template-card:focus-visible{outline:3px solid #c8a96a;outline-offset:3px}.create-card-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}.create-card-icon{display:grid;place-items:center;width:42px;height:42px;border-radius:13px;background:#e8f2eb;color:#235d41;font-size:22px;font-weight:700}.create-card-index{font-size:9px;letter-spacing:1.2px;font-weight:800;color:#9aa79e}.create-card-title{display:block;font-size:14px;line-height:1.45;font-weight:800;color:#1c3c2c;margin-bottom:7px}.create-card-desc{display:block;flex:1;font-size:11px;line-height:1.65;color:#718076}.create-card-bottom{display:flex;align-items:center;justify-content:space-between;margin-top:17px;padding-top:12px;border-top:1px solid #edf1ee;color:#728176;font-size:9px;font-weight:800;letter-spacing:1px}.create-card-bottom b{display:grid;place-items:center;width:25px;height:25px;border-radius:8px;background:#edf4ef;color:#22563b;font-size:15px}.create-tugas .create-card-icon{background:#f7f0df;color:#98763a}.create-undangan .create-card-icon{background:#e9f0f8;color:#416b9b}.create-sppd .create-card-icon{background:#f1ebf7;color:#8060a0}.create-pemberitahuan .create-card-icon{background:#f8eae5;color:#a35b43}.create-card-tag{align-self:flex-start;margin-top:9px;padding:5px 7px;border-radius:6px;background:#f8f0df;color:#8d7139;font-size:8px;font-weight:800;letter-spacing:.7px}
 .create-footer-note{display:flex;align-items:center;gap:12px;margin-top:19px;padding:14px 17px;border:1px solid #e3ebe5;border-radius:15px;background:#f9fbf9}.create-footer-note>span{display:grid;place-items:center;flex:0 0 34px;height:34px;border-radius:11px;background:#f7f0df;color:#9b7c3d;font-size:18px}.create-footer-note strong{display:block;color:#244633;font-size:12px;margin-bottom:3px}.create-footer-note p{margin:0;color:#718076;font-size:11px;line-height:1.6}
 @media(max-width:1000px){.create-template-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.create-hero{padding:27px}.create-hero-art{margin-right:0}}
-@media(max-width:600px){.create-hero{min-height:0;padding:23px 20px}.create-hero-art{display:none}.create-hero p{font-size:12px}.create-hero-meta{gap:9px;letter-spacing:.8px}.create-heading{align-items:flex-start}.create-count{padding:8px}.create-template-grid{grid-template-columns:1fr;gap:11px}.create-template-card{min-height:0;padding:16px}.create-card-top{margin-bottom:12px}.create-card-bottom{margin-top:13px}.create-footer-note{align-items:flex-start;padding:13px}}</style>
+@media(max-width:600px){.create-hero{min-height:0;padding:23px 20px}.create-hero-art{display:none}.create-hero p{font-size:12px}.create-hero-meta{gap:9px;letter-spacing:.8px}.create-heading{align-items:flex-start}.create-count{padding:8px}.create-template-grid{grid-template-columns:1fr;gap:11px}.create-template-card{min-height:0;padding:16px}.create-card-top{margin-bottom:12px}.create-card-bottom{margin-top:13px}.create-footer-note{align-items:flex-start;padding:13px}}
+/* Tampilan sederhana menu Buat Surat saja; tidak mengubah formulir atau fungsi surat. */
+.create-page .create-hero{min-height:0;padding:22px 24px;margin-bottom:20px;border-radius:14px;background:#fff;color:var(--text);box-shadow:none;border:1px solid var(--line)}
+.create-page .create-hero-content{max-width:none}
+.create-page .create-eyebrow{margin-bottom:8px;color:var(--muted);font-size:10px;letter-spacing:1px}
+.create-page .create-eyebrow span{background:var(--line)}
+.create-page .create-hero h3{font-size:24px;color:var(--primary);letter-spacing:0;margin-bottom:6px}
+.create-page .create-hero p{max-width:none;color:var(--muted);font-size:13px;line-height:1.6}
+.create-page .create-hero-meta{margin-top:12px;color:var(--muted);letter-spacing:.4px}
+.create-page .create-hero-meta b{color:var(--primary);font-size:11px}
+.create-page .create-hero-meta i{background:var(--line)}
+.create-page .create-hero-art{display:none}
+.create-page .create-heading{margin-bottom:12px}
+.create-page .create-heading>div:first-child>span{font-size:9px;letter-spacing:1px;color:var(--muted)}
+.create-page .create-heading h3{font-size:18px;color:var(--text);letter-spacing:0;margin:3px 0}
+.create-page .create-heading p{font-size:12px}
+.create-page .create-count{padding:7px 10px;border-radius:9px;background:#fff;box-shadow:none}
+.create-page .create-count strong{font-size:18px}
+.create-page .create-template-grid{gap:10px}
+.create-page .create-template-card{min-height:0;padding:14px;border-radius:12px;background:#fff;border-color:var(--line);box-shadow:none;transition:border-color .15s ease}
+.create-page .create-template-card:hover{transform:none;border-color:#9db8a6;box-shadow:0 3px 10px #163d2508}
+.create-page .create-card-top{margin-bottom:11px}
+.create-page .create-card-icon{width:34px;height:34px;border-radius:9px;font-size:18px}
+.create-page .create-card-index{font-size:9px;letter-spacing:.5px}
+.create-page .create-card-title{font-size:13px;line-height:1.4;margin-bottom:4px}
+.create-page .create-card-desc{font-size:11px;line-height:1.5}
+.create-page .create-card-bottom{margin-top:11px;padding-top:9px;border-top:1px solid var(--line);font-size:9px;letter-spacing:.4px}
+.create-page .create-card-bottom b{width:22px;height:22px;border-radius:7px;background:#f1f5f2;font-size:13px}
+.create-page .create-card-tag{margin-top:7px}
+.create-page .create-footer-note{display:none}
+@media(max-width:600px){
+ .create-page .create-hero{padding:18px;margin-bottom:16px}
+ .create-page .create-hero h3{font-size:21px}
+ .create-page .create-hero-meta{flex-wrap:wrap}
+ .create-page .create-heading{align-items:center}
+ .create-page .create-template-grid{grid-template-columns:1fr;gap:8px}
+ .create-page .create-template-card{padding:13px}
+}
+
+</style>
 </head>
 <body>
 <div id="login" class="login">
